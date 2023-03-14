@@ -7,7 +7,7 @@ function App() {
       <div className="app_header">
         <img
           className="app_headerImage"
-        src="https://assets.turbologo.com/blog/pt/2019/09/19133708/instagram-logo-illustration-728x437.png"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/320px-Instagram_logo.svg.png"
         alt=""
         />
       </div>
