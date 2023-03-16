@@ -9,7 +9,6 @@ function App() {
         <img
           className="app_headerImage"
         src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/320px-Instagram_logo.svg.png"
-        alt=""
         />
       </div>
       
