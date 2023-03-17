@@ -13,8 +13,9 @@ function Post() {
       />
       <h3>Username</h3>
       </div>
-      
+
       <img className="post_image" src="https://cdn-media-1.freecodecamp.org/images/1*y6C4nSvy2Woe0m7bWEn4BA.png"/>
+      alt=""
 
       <h4 className="post_text"><strong>cleverqazi</strong>WOW day three of live sessions</h4>
     </div>
