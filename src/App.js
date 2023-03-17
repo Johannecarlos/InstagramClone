@@ -15,7 +15,7 @@ function App() {
       
       <h1>HELLO Clever Programmers Let's build an Instagram Clone with React!</h1>
 
-      <Post />
+      <Post username="cleverqazi" caption="WOW it works" imageUrl="https://cdn-media-1.freecodecamp.org/images/1*y6C4nSvy2Woe0m7bWEn4BA.png" />
       <Post />
       <Post />
 
