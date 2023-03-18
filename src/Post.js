@@ -2,7 +2,7 @@ import React from 'react';
 import './Post.css';
 import Avatar from "@material-ui/core/Avatar";
 
-function Post() {
+function Post({ username, caption, imageUrl }) {
   return (
     <div className="post">
       <div className="post_header">
@@ -11,13 +11,12 @@ function Post() {
         alt='RafehQazi'
         src="/static/images/avatar/1.jpg"
       />
-      <h3>Username</h3>
+      <h3>{username}</h3>
       </div>
 
-      <img className="post_image" src="https://cdn-media-1.freecodecamp.org/images/1*y6C4nSvy2Woe0m7bWEn4BA.png"/>
-      alt=""
+      <img className="post_image" src={imageUrl} alt=""/>
 
-      <h4 className="post_text"><strong>cleverqazi</strong>WOW day three of live sessions</h4>
+      <h4 className="post_text"><strong>{username}</strong>{caption}</h4>
     </div>
   )
 }
