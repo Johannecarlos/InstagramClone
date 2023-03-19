@@ -7,12 +7,12 @@ function App() {
     {
       username: "cleverqazi",
       caption: "WOW it works",
-      imageUrl: "https://cdn-media-1.freecodecamp.org/images/1*y6C4nSvy2Woe0m7bWEn4BA.png"
+      imageUrl: "https://www.freecodecamp.org/news/content/images/size/w2000/2020/02/Ekran-Resmi-2019-11-18-18.08.13.png"
     },
     {
       username: "cleverqazi",
       caption: "WOW it works",
-      imageUrl: "https://cdn-media-1.freecodecamp.org/images/1*y6C4nSvy2Woe0m7bWEn4BA.png"
+      imageUrl: "https://www.freecodecamp.org/news/content/images/size/w2000/2020/02/Ekran-Resmi-2019-11-18-18.08.13.png"
     }
   ]);
 
@@ -34,7 +34,7 @@ function App() {
         ))
       }
 
-      <Post username="cleverqazi" caption="WOW it works" imageUrl="https://cdn-media-1.freecodecamp.org/images/1*y6C4nSvy2Woe0m7bWEn4BA.png" />
+      <Post username="cleverqazi" caption="WOW it works" imageUrl="https://www.freecodecamp.org/news/content/images/size/w2000/2020/02/Ekran-Resmi-2019-11-18-18.08.13.png" />
       <Post username="ssssangha" caption="DOPE" imageUrl="" />
 
     </div>
