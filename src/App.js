@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Button, Input } from '@material-ui/core';
 import ImageUpload from './ImageUpload';
+import InstagramEmbed from 'react-instagram-embed';
 
 function getModalStyle() {
   const top = 50;
@@ -54,21 +55,23 @@ function App() {
 
     return () => {
       // perform some cleanup actions
-      unsubscribe();
+      unsubscribe()
     }
   }, [user, username]);
 
   useEffect(() => {
     // this is where the code runs
-    db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
-      // every time a new post is added, this code fires...
-      setPosts(
-        snapshot.docs.map(doc => ({
-          id: doc.id,
-          post: doc.data()
-        }))
-      )
-    })
+    db.collection('posts')
+      .orderBy('timestamp', 'desc')
+      .onSnapshot(snapshot => {
+        // every time a new post is added, this code fires...
+        setPosts(
+          snapshot.docs.map(doc => ({
+            id: doc.id,
+            post: doc.data()
+          }))
+        )
+      })
   }, [])
 
   const signUp = event => {
@@ -93,18 +96,11 @@ function App() {
       .signInWithEmailAndPassword(email, password)
       .catch(error => alert(error.message))
 
-    setOpenSignIn(false);
+    setOpenSignIn(false)
   }
 
   return (
     <div className="app">
-
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName} />
-      ): (
-        <h3>Sorry you need to login to upload</h3>
-      )}
-
       <Modal open={open} onClose={() => setOpen(false)}>
         <div style={modalStyle} className={classes.paper}>
           <form className="app_signup">
@@ -171,24 +167,27 @@ function App() {
           src="https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png"
           alt=""
         />
+        {user ? (
+          <Button onClick={() => auth.signOut()}>Logout</Button>
+        ) : (
+          <div className="app_loginContainer">
+            <Button onClick={() => setOpenSignIn(true)}>Sign Ip</Button>
+            <Button onClick={() => setOpen(true)}>Sign Up</Button>
+          </div>
+        )}
       </div>
 
-      {user ? (
-        <Button onClick={() => auth.signOut()}>Logout</Button>
+      <div className="app_posts">
+        {posts.map(({ id, post }) => (
+          <Post username={post.username} caption={post.caption} imageUrl="" />
+        ))}
+      </div>
+
+      {user?.displayName ? (
+        <ImageUpload username={user.displayName} />
       ) : (
-        <div className="app_loginContainer">
-          <Button onClick={() => setOpenSignIn(true)}>Sign Ip</Button>
-          <Button onClick={() => setOpen(true)}>Sign Up</Button>
-        </div>
+        <h3>Sorry you need to login to upload</h3>
       )}
-
-      <h1>
-        HELLO Clever Programmers Let's build an Instagram Clone with React!
-      </h1>
-
-      {posts.map(({ id, post }) => (
-        <Post username={post.username} caption={post.caption} imageUrl="" />
-      ))}
     </div>
   )
 }
