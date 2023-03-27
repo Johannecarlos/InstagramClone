@@ -183,6 +183,15 @@ function App() {
         ))}
       </div>
 
+      <InstagramEmbed
+      url='https://instagr.am/p/Zw9o4/'
+      maxWidth={320}
+      hideCaption={false}
+      containerTagName='div'
+      protocol=''
+      injectScript
+      o
+
       {user?.displayName ? (
         <ImageUpload username={user.displayName} />
       ) : (
