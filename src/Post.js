@@ -17,7 +17,7 @@ function Post({ postId, user, username, caption, imageUrl }) {
       .collection("comments")
       .orderBy('timestamp', 'desc')
       .onSnapshot((snapshot => {
-        setComments(snapshot.docs.map((doc => doc.data()));
+        setComments(snapshot.docs.map((doc) => doc.data())),
       });
     }
 
@@ -29,7 +29,7 @@ function Post({ postId, user, username, caption, imageUrl }) {
   const postComment = (event) => {
     event.preventDefault();
 
-    db.collection("posts".doc(postId).collection("comments").add({
+    db.collection("posts").doc(postId).collection("comments").add({
       text: comment,
       usename: user.displayName,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -53,7 +53,7 @@ function Post({ postId, user, username, caption, imageUrl }) {
       <h4 className="post_text"><strong>{username}</strong>{caption}</h4>
 
       <div className="app_comments">
-        {comments.map( comment ) => (
+        {comments.map((comment) => (
          <p>
           <strong>{comment.username}</strong> {comment.text}
          </p>
