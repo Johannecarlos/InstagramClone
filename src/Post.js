@@ -61,7 +61,6 @@ function Post({ postId, user, username, caption, imageUrl }) {
       </div>
 
       {user && (
-
       <form className="post_commentBox">
       <input
           className="post_input"
