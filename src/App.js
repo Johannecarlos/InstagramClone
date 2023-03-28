@@ -55,53 +55,52 @@ function App() {
 
     return () => {
       // perform some cleanup actions
-      unsubscribe()
+      unsubscribe();
     }
   }, [user, username]);
 
   useEffect(() => {
     // this is where the code runs
-    db.collection('posts')
-      .orderBy('timestamp', 'desc')
-      .onSnapshot(snapshot => {
+    db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
         // every time a new post is added, this code fires...
-        setPosts(
-          snapshot.docs.map(doc => ({
+        setPosts(snapshot.docs.map(doc => ({
             id: doc.id,
             post: doc.data()
-          }))
-        )
+          })));
       })
-  }, [])
+  }, []);
 
   const signUp = event => {
-    event.preventDefault()
+    event.preventDefault();
 
     auth
       .createUserWithEmailAndPassword(email, password)
       .then(authUser => {
-        authUser.user.updateProfile({
+        return authUser.user.updateProfile({
           displayName: username
         })
       })
-      .catch(error => alert(error.message))
+      .catch((error) => alert(error.message));
 
-    setOpen(false)
+      setOpen(false);
   }
 
-  const signIn = event => {
-    event.preventDefault()
+  const signIn = (event) => {
+    event.preventDefault();
 
     auth
       .signInWithEmailAndPassword(email, password)
-      .catch(error => alert(error.message))
+      .catch(error => alert(error.message));
 
-    setOpenSignIn(false)
+    setOpenSignIn(false);
   }
 
   return (
     <div className="app">
-      <Modal open={open} onClose={() => setOpen(false)}>
+      <Modal
+       open={open} 
+       onClose={() => setOpen(false)}
+      >
         <div style={modalStyle} className={classes.paper}>
           <form className="app_signup">
             <center>
@@ -129,12 +128,16 @@ function App() {
               value={password}
               onChange={e => setPassword(e.target.value)}
             />
-            <Button onClick={signUp}>Sign Up</Button>
+            <Button type="submit" onClick={signUp}>Sign Up</Button>
           </form>
+
         </div>
       </Modal>
 
-      <Modal open={openSignIn} onClose={() => setOpenSignIn(false)}>
+      <Modal
+       open={openSignIn} 
+       onClose={() => setOpenSignIn(false)}
+      >
         <div style={modalStyle} className={classes.paper}>
           <form className="app_signup">
             <center>
@@ -156,8 +159,9 @@ function App() {
               value={password}
               onChange={e => setPassword(e.target.value)}
             />
-            <Button onClick={signIn}>Sign In</Button>
+            <Button type="submit" onClick={signIn}>Sign In</Button>
           </form>
+
         </div>
       </Modal>
 
@@ -175,19 +179,19 @@ function App() {
             <Button onClick={() => setOpen(true)}>Sign Up</Button>
           </div>
         )}
-      </div>
+        </div>
 
       <div className="app_posts">
         <div className="app_postsLeft">
         {
         posts.map(({ id, post }) => (
-          <Post key={id} postId={id} user={user} username={post.username} caption={post.caption} imageUrl="" />
-        ))
+          <Post key={id} postId={id} user={user} username={post.username} caption={post.caption} imageUrl={post.imageUrl} />
+          ))
         }
       </div>
       <div className="app_postsRight">
       <InstagramEmbed
-      url='https://instagr.am/p/Zw9o4/'
+      url='https://www.instagram.com/p/B_uf9dnAGPw/'
       maxWidth={320}
       hideCaption={false}
       containerTagName='div'
@@ -199,14 +203,16 @@ function App() {
       onFailure={() => {}}
       />
       </div>
+      </div>
 
       {user?.displayName ? (
         <ImageUpload username={user.displayName} />
-      ) : (
+      ): (
         <h3>Sorry you need to login to upload</h3>
       )}
+
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
