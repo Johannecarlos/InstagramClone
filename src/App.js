@@ -178,11 +178,14 @@ function App() {
       </div>
 
       <div className="app_posts">
-        {posts.map(({ id, post }) => (
-          <Post username={post.username} caption={post.caption} imageUrl="" />
-        ))}
+        <div className="app_postsLeft">
+        {
+        posts.map(({ id, post }) => (
+          <Post key={id} postId={id} user={user} username={post.username} caption={post.caption} imageUrl="" />
+        ))
+        }
       </div>
-
+      <div className="app_postsRight">
       <InstagramEmbed
       url='https://instagr.am/p/Zw9o4/'
       maxWidth={320}
@@ -190,7 +193,12 @@ function App() {
       containerTagName='div'
       protocol=''
       injectScript
-      o
+      onLoading={() => {}}
+      onSuccess={() => {}}
+      onAfterRender={() => {}}
+      onFailure={() => {}}
+      />
+      </div>
 
       {user?.displayName ? (
         <ImageUpload username={user.displayName} />
