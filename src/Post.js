@@ -17,8 +17,8 @@ function Post({ postId, user, username, caption, imageUrl }) {
       .collection("comments")
       .orderBy('timestamp', 'desc')
       .onSnapshot((snapshot => {
-        setComments(snapshot.docs.map((doc) => doc.data())),
-      });
+        setComments(snapshot.docs.map((doc) => doc.data()));
+      }));
     }
 
     return () => {
